@@ -12,14 +12,14 @@ class FormatDataTest(unittest.TestCase):
              'Clean Alternative Fuel Vehicle (CAFV) Eligibility': 'Clean Alternative Fuel Vehicle Eligible'},
             {'Make': 'Toyota', 'Model': 'Prius', 'Electric Vehicle Type': 'Plug-in Hybrid',
              'Clean Alternative Fuel Vehicle (CAFV) Eligibility': 'Not Applicable'},
-            {},  # Empty element test
-            {'ExtraColumn': 'This should be ignored'},  # Unexpected column test
+            {},  # Probando un elemento vacio
+            {'ExtraColumn': 'This should be ignored'}, 
         ]
 
         expected_output = [
             {'VehicleMake': 'Tesla', 'VehicleModel': 'Model 3', 'EVType': 'Battery Electric', 'IsEligible': 1},
             {'VehicleMake': 'Toyota', 'VehicleModel': 'Prius', 'EVType': 'Plug-in Hybrid', 'IsEligible': 0},
-            {},  # Empty element remains empty
+            {},  # Probando un elemento vacio
             {'ExtraColumn': 'This should be ignored', 'VehicleMake': None, 'VehicleModel': None, 'EVType': None, 'IsEligible': None},  # Unexpected column is not removed
         ]
 
