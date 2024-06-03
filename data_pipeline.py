@@ -24,7 +24,11 @@ def run():
 
     # Ruta del archivo CSV en el sistema Windows
     input_file = r'C:/Users/javie/Desktop/D-E/YOM/mvp_de/mnt/data/Electric_Vehicle_Population_Data.csv'
-
+    """ 
+    # Ruta del archivo CSV en Cloud Storage GCP
+    input_file = 'gs://bucket_name/path/to/input/Electric_Vehicle_Population_Data.csv'
+    output_path = 'gs://bucket_name/path/to/output/'
+    """
     headers = ['VIN (1-10)', 'County', 'City', 'State', 'Postal Code', 'Model Year', 'Make', 'Model', 'Electric Vehicle Type', 'Clean Alternative Fuel Vehicle (CAFV) Eligibility', 'Electric Range', 'Base MSRP', 'Legislative District', 'DOL Vehicle ID', 'Vehicle Location', 'Electric Utility', '2020 Census Tract']
 
     # Leer y procesar datos del CSV
@@ -37,6 +41,21 @@ def run():
      | 'WriteOutput' >> beam.io.WriteToText(r'C:/Users/javie/Desktop/D-E/YOM/mvp_de/mnt/data/output/transformed_data', file_name_suffix='.csv', shard_name_template=''))
 
     p.run().wait_until_finish()
+    """ 
+    SE comenta esta linea para que en un futuro se pueda subir el archivo de salida a Cloud Storage
+    upload_to_gcs(output_path)
+
+def upload_to_gcs(output_path):
+    client = storage.Client()
+    bucket_name = "bucket_name"
+    bucket = client.bucket(bucket_name)
+    
+    # Obtenemos la fecha actual
+    current_date = datetime.now().strftime("%Y-%m-%d")
+    
+    # Subir el archivo de salida al bucket
+    blob = bucket.blob(f"output/transformed_data_{current_date}.csv")
+    blob.upload_from_filename(output_path + '-00000-of-00001') """
 
 if __name__ == '__main__':
     run()
