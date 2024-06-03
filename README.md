@@ -31,4 +31,4 @@ Este proyecto implementa un pipeline de procesamiento de datos utilizando Apache
 ## Git y CI/CD
 
 Este proyecto utiliza GitHub Actions para CI/CD. Las pruebas se ejecutan automáticamente al hacer push en la rama `main`.
-![Ejemplo de Ejecución](ejemplo_ejecucion.png)
+![Ejemplo de Ejecución](mvp_de/blob/main/ejemplo_ejecucion.jpg)
